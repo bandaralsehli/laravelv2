@@ -22,6 +22,7 @@ if (! function_exists('vite_assets')) {
             <script type="module" src="http://localhost:8000/@vite/client"></script>
             <link rel="stylesheet" href="http://localhost:8000/resources/css/app.css">
             <script type="module" src="http://localhost:8000/resources/js/app.js"></script>
+            <script src="https://use.fontawesome.com/releases/vVERSION/js/all.js" data-auto-replace-svg="nest"></script>
         HTML);
         }
         $manifest = json_decode(file_get_contents(
