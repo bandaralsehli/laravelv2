@@ -2,6 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Da3mController;
+use App\Http\Controllers\TaqeimController;
+use GuzzleHttp\Client;
+
+
+
+
+// //مهم جداً
+// dd(app());
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,54 +27,128 @@ use App\Http\Controllers\HomeController;
 */
 
 
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 
 
+// -H "X-Parse-Application-Id: faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh" \
+// -H "X-Parse-Master-Key: 4dKCr47nw2yh3Si4726ZmAA7NB3u2vZkmCaVD1RN" \
+// -H "X-Parse-Session-Token: r:5d33cb90657d41ddccdc2eee1a12e6c6" \
 
 
+Route::get('/alltiect', function () {
+
+    $response = Http::withHeaders([
+        'X-Parse-Application-Id' => 'faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh',
+        'X-Parse-Application-Id' => 'faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh',
+        'X-Parse-Session-Token' => 'r:5d33cb90657d41ddccdc2eee1a12e6c6',
+    ])->get('https://parseapi.back4app.com/classes/ticket');
+
+    return $response['sessionToken'] ;
+   // return view('httest');
+});
 
 // //good api login
-// Route::get('/log4login', function () {
+Route::get('/log4login', function () {
 
-//     $response = Http::withHeaders([
-//         'accept' => 'application/json',
-//         'X-Parse-Application-Id' => 'faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh',
-//         'X-Parse-REST-API-Key' => 'T0Ag23ExRe6UtCQb9KtD7mPFMjtatgWxhUwyZZRI',
-//         'X-Parse-Revocable-Session' => '1',
+    $response = Http::withHeaders([
+        'accept' => 'application/json',
+        'X-Parse-Application-Id' => 'faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh',
+        'X-Parse-REST-API-Key' => 'T0Ag23ExRe6UtCQb9KtD7mPFMjtatgWxhUwyZZRI',
+        'X-Parse-Revocable-Session' => '1',
 
-//     ])->get('https://parseapi.back4app.com/login', [
-//         'username' => 'Admin',
-//         'password' => 'ssss90384593jfsdfkGERTAW21gjalss',
-//     ]);
+    ])->get('https://parseapi.back4app.com/login', [
+        'username' => 'Admin',
+        'password' => 'ssss90384593jfsdfkGERTAW21gjalss',
+    ]);
 
-//     return $response['sessionToken'] ;
-//    // return view('httest');
-// });
+    return $response['sessionToken'] ;
+   // return view('httest');
+});
 
 // // good   singup
-// Route::get('/log4signup', function () {
+Route::get('/log4signup', function () {
+
+    // $response = Http::withHeaders([
+    //     'accept' => 'application/json',
+    //     'X-Parse-Application-Id' => 'faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh',
+    //     'X-Parse-REST-API-Key' => 'T0Ag23ExRe6UtCQb9KtD7mPFMjtatgWxhUwyZZRI',
+    //     'X-Parse-Revocable-Session' => '1',
+    //     'Content-Type' => 'application/json',
+
+    // ])->post('https://parseapi.back4app.com/users', [
+    //     'username' => 'testapi',
+    //     'email' => 'testapi@h.com',
+    //     'displayName' => 'testapi alsehli',
+    //     'password' => 'sexdexofgogofgopfdferer',
+    // ]);
+
+    // return $response ;
+
+
+
+    // $client = new GuzzleHttp\Client();
+    // $res = $client->request('GET', 'https://parseapi.back4app.com/users', [
+    //     'auth' => ['user', 'pass']
+    // ]);
+    // echo $res->getStatusCode();
+    // // "200"
+    // echo $res->getHeader('content-type')[0];
+    // // 'application/json; charset=utf8'
+    // echo $res->getBody();
+    $client = new \GuzzleHttp\Client();
+
+    // $res = $client->request('GET', 'https://parseapi.back4app.com/login', [
+    //     'verify' => false,
+    //     'form_params' => [
+    //         'username' => 'bandar',
+    //         'password' => 'Password123',
+    //     ],
+    //     'headers' => [
+    //         'accept' => 't application/json',
+    //         'X-Parse-Application-Id'     => 'faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh',
+    //         'X-Parse-REST-API-Key'     => 'T0Ag23ExRe6UtCQb9KtD7mPFMjtatgWxhUwyZZRI',
+    //         'X-Parse-Revocable-Session'     => '1'
+    //     ]
+    // ]);
+
+
+
+
+  return $res->getBody();;
+});
+
+
+// // good   singup
+// Route::get('/sss', function () {
 
 //     $response = Http::withHeaders([
-//         'accept' => 'application/json',
 //         'X-Parse-Application-Id' => 'faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh',
 //         'X-Parse-REST-API-Key' => 'T0Ag23ExRe6UtCQb9KtD7mPFMjtatgWxhUwyZZRI',
-//         'X-Parse-Revocable-Session' => '1',
-//         'Content-Type' => 'application/json',
+//         '--data-urlencode' => 'count=1',
 
-//     ])->post('https://parseapi.back4app.com/users', [
-//         'username' => 'testapi',
-//         'email' => 'testapi@h.com',
-//         'displayName' => 'testapi alsehli',
-//         'password' => 'sexdexofgogofgopfdferer',
-//     ]);
+
+//     ])->get('https://parseapi.back4app.com/classes/ticket');
 
 //     return $response ;
 //    // return view('httest');
 // });
 
+
+//curl -X GET \
+//-H "X-Parse-Application-Id: faefaVxc667rBCJfBWerLVgwbN8ymX1S9CkceSjh" \
+//-H "X-Parse-REST-API-Key: T0Ag23ExRe6UtCQb9KtD7mPFMjtatgWxhUwyZZRI" \
+//-G --data-urlencode "count=1" \
+//https://parseapi.back4app.com/classes/MyCustomClass
+
+
+//
 
 // // good   up daut
 // Route::get('/updataapi', function () {
@@ -149,9 +235,6 @@ Route::get('/', function () {
 
 
 
-Route::get('/da3m', function () {
-    return view('da3m');
-});
 
 
 // //good prodectes
@@ -160,11 +243,20 @@ Route::get('/da3m', function () {
 // })->middleware('auth');
 
 //taqeim
-Route::get('/taqeim', function () {
-    return view('add_taqeim');
-});
+// Route::get('/taqeim', function () {
+//     return view('add_taqeim');
+// });
+
+Route::get('/taqeim', [TaqeimController::class, 'index']);
+
+//taqeim.store
+
+Route::post('/taqeim', [TaqeimController::class, 'store']);
 
 
+// Route::post('/taqeim', function () {
+//     return 'Hello World';
+// });
 
 Route::get('/monthly', function () {
     return view('month');
@@ -197,3 +289,23 @@ Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route::post('/login', [LoginController::class, 'authenticate']);
+
+
+
+// Route::get('/da3m', function () {
+//     return view('da3m');
+// });
+
+
+Route::get('/da3m', function () {
+    return redirect('/admin');
+});
+
+
+Route::get('/admin', [App\Http\Controllers\Da3mController::class, 'index'])->name('index');
+Route::get('/admin/supervisor', [App\Http\Controllers\Da3mController::class, 'Supervisor']);
+Route::get('/admin/technicians', [App\Http\Controllers\Da3mController::class, 'technicians']);
+
+
+
+Route::get('/admin/Setting', [App\Http\Controllers\Da3mController::class, 'Setting']);
