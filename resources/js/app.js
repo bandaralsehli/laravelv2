@@ -5,7 +5,8 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue';
+import { createApp  } from 'vue';
+
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -14,26 +15,12 @@ import { createApp } from 'vue';
  */
 
 const app = createApp({});
+const appforms = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import Taqeim_formsComponent from './components/taqeim_forms.vue';
 app.component('example-component', ExampleComponent);
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
-
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
-
 app.mount('#app');
+
+appforms.component('taqeim-forms', Taqeim_formsComponent);
+appforms.mount('#app');
